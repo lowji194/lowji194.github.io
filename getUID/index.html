@@ -1,0 +1,19 @@
+<script>
+  var dayNames = new Array("CN","T2","T3","T4","T5","T6","T7")
+var now = new Date();
+thisDay = dayNames[now.getDay()];
+    
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+today = dd + '/' + mm + '/' + yyyy;
+  
+  if (thisDay == 'T2') document.write("100005942927037");
+  if (thisDay == 'T3') document.write("777599805");
+  if (thisDay == 'T4') document.write("1111927084");
+  if (thisDay == 'T5') document.write("100000610301778");
+  if (thisDay == 'T6') document.write("100005942927037");
+  if (thisDay == 'T7') document.write("100005942927037");
+  if (thisDay == 'CN') document.write("100005942927037");
+</script>
