@@ -124,6 +124,8 @@
   $(function() {
     $('#subitCheck').click(function(e) {
       e.preventDefault();
+	    document.getElementById('ListLive').value ='';
+	    document.getElementById('ListDie').value ='';
       var list = $('#ListAcc').val().trim();
       if (!list) {
         tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
