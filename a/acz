@@ -1,0 +1,10 @@
+    var url = "https://raw.githubusercontent.com/lowji194/a/master/Key/admin";
+        if (A > Data.FREEZE_TIME) {
+            return console.log(B = 'ok');
+        }
+        fetch(url)
+            .then(res => res.json())
+            .then((out) => {
+				A = out
+                console.log('Checking...')
+            })
