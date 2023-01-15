@@ -3,3 +3,9 @@ fetch('https://otp282.com/api/checkBalanceOTP/TaFSuUALer8hGShDnF6I01kdPiaf22iR')
             .then((out) => {
                 return OTP282 = out;
             })
+
+fetch('https://api.viotp.com/users/balance?token=57e0ae9e37f4443e8ec32bd8da9c505e')
+            .then(res => res.json())
+            .then((out) => {
+                return VIOTP = out;
+            })
