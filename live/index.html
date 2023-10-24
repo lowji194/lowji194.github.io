@@ -169,7 +169,7 @@
 			keywork = "//static";
 		}
 
-          xhr.open('GET', `https://graph.facebook.com/${idfb}/picture?type=${url}`, true);
+          xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
           xhr.onreadystatechange = function() {
 		  if (locuid == true) {
             if (xhr.readyState == 4) {
