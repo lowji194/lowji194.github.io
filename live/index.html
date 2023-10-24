@@ -73,7 +73,7 @@
         <div class="card-body">
           <div class="form-group">
             <label>Nhập List UID:</label>&emsp;&emsp;&emsp;&emsp;&emsp;
-		<label class="text-right"><input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="isLoaiTrungLap1" /><span class="ng-binding"> Lọc UID từ list</span> | <a href="../cat/">Cắt chuỗi</a></label>
+		<label class="text-right"><input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="isLoaiTrungLap1" /><span class="ng-binding"> Lọc UID từ list</span> | <input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="CheckAvatar" /><span class="ng-binding"> Check Avatar</span> | <a href="../cat/">Cắt chuỗi</a></label>
             <textarea rows="7" id="ListAcc" class="form-control"></textarea>
           </div>
           <br>
@@ -157,13 +157,24 @@
 				var idfb = account.split(/[|,/]/)[0];
 			}
 		  var locuid = document.querySelector("#isLoaiTrungLap1").checked;
+		var checkavatar = document.querySelector("#CheckAvatar").checked;
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', `https://graph.facebook.com/${idfb}/picture?type=normal`, true);
+		var url = "";
+		var keywork = "";
+		if (checkavatar == true) {
+			url = "picture?type=large&width=500&height=500&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
+			keywork = "5.fna.fbcdn.net/v/t1.30497";
+		} else {
+			url = "picture?type=normal";
+			keywork = "//static";
+		}
+
+          xhr.open('GET', `https://graph.facebook.com/${idfb}/picture?type=${url}`, true);
           xhr.onreadystatechange = function() {
 		  if (locuid == true) {
             if (xhr.readyState == 4) {
               if (xhr.status == 200) {
-                if (!xhr.responseURL.includes('//static')) {
+                if (!xhr.responseURL.includes(keywork)) {
 				  $('#live').html(++live);
                   $('#ListLive').append(account.replace(/\D/g, '') + "\n");
                 } else {
@@ -182,7 +193,7 @@
 			} else {
 			            if (xhr.readyState == 4) {
               if (xhr.status == 200) {
-                if (!xhr.responseURL.includes('//static')) {
+                if (!xhr.responseURL.includes(keywork)) {
 				  $('#live').html(++live);
                   $('#ListLive').append(account + "\n");
                 } else {
