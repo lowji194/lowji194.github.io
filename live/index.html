@@ -1,254 +1,259 @@
- 
 <!doctype html>
 <html lang="en">
+
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Copyjs -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <!-- Ajax Lib -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
-  <!-- DATATABLES -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-  <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> <title>Check Live UID</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Copyjs -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Ajax Lib -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <!-- DATATABLES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Check Live UID</title>
 </head>
 <script>
-  $(document).ready(function() {
-    $('#db').DataTable({
-      "responsive": false,
-      "autoWidth": true,
+    $(document).ready(function() {
+        $('#db').DataTable({
+            "responsive": false,
+            "autoWidth": true,
+        });
     });
-  });
-</script><div class="container">
-  <div class="row">
-    <section class="col-lg-6 connectedSortable">
-      <div class="card">
-        <div class="card-header bg-danger card-outline">
-          <h5 class="card-title m-0">Thông Tin</h5>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <div class="d-flex justify-content-between bd-highlight mb-3">
-              <p class="text-left h5">
-                Tổng số UID:
-              </p>
-              <p class="text-right h5">
-                <span id="total" class="badge badge-primary">0</span>
-              </p>
+</script>
+<div class="container">
+    <div class="row">
+        <section class="col-lg-6 connectedSortable">
+            <div class="card">
+                <div class="card-header bg-danger card-outline">
+                    <h5 class="card-title m-0">Thông Tin</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="d-flex justify-content-between bd-highlight mb-3">
+                            <p class="text-left h5">
+                                Tổng số UID:
+                            </p>
+                            <p class="text-right h5">
+                                <span id="total" class="badge badge-primary">0</span>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between bd-highlight mb-3">
+                            <p class="text-left h5">
+                                Tổng số UID Live:
+                            </p>
+                            <p class="text-right h5">
+                                <span id="live" class="badge badge-success">0</span>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between bd-highlight mb-3">
+                            <p class="text-left h5">
+                                Tổng số UID Die:
+                            </p>
+                            <p class="text-right h5">
+                                <span id="die" class="badge badge-danger">0</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-between bd-highlight mb-3">
-              <p class="text-left h5">
-                Tổng số UID Live:
-              </p>
-              <p class="text-right h5">
-                <span id="live" class="badge badge-success">0</span>
-              </p>
+            <div class="py-1"></div>
+            <div class="card">
+                <div class="card-header bg-primary card-outline">
+                    <h5 class="card-title m-0">DANH SÁCH ID CẦN CHECK</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Nhập List UID:</label>&emsp;&emsp;&emsp;&emsp;&emsp;
+                        <label class="text-right">
+                            <input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="isLoaiTrungLap1" /><span class="ng-binding"> Lọc UID từ list</span> |
+                            <input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="CheckAvatar"><span class="ng-binding"> Check Avatar</span>
+                            </input> | <a href="../cat/">Cắt chuỗi</a>
+                        </label>
+                        <textarea rows="7" id="ListAcc" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group text-center">
+                        <button id="subitCheck" type="submit" class="btn btn-primary btn-block"><i class="fa fa-button"></i> BẮT ĐẦU </button>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-between bd-highlight mb-3">
-              <p class="text-left h5">
-                Tổng số UID Die:
-              </p>
-              <p class="text-right h5">
-                <span id="die" class="badge badge-danger">0</span>
-              </p>
+        </section>
+        <section class="col-lg-6 connectedSortable">
+            <div class="card">
+                <div class="card-header bg-success card-outline">
+                    <h5 class="card-title m-0">ACC LIVE</h5>
+                </div>
+                <div class="card-body">
+                    <label>ACC LIVE:</label>
+                    <div class="form-group">
+                        <div class="border border-success">
+                            <textarea rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');" id="ListLive" data-clipboard-target="#ListLive" readonly=""></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="py-1"></div>
-      <div class="card">
-        <div class="card-header bg-primary card-outline">
-          <h5 class="card-title m-0">DANH SÁCH ID CẦN CHECK</h5>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label>Nhập List UID:</label>&emsp;&emsp;&emsp;&emsp;&emsp;
-		<label class="text-right"><input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="isLoaiTrungLap1" /><span class="ng-binding"> Lọc UID từ list</span> |
-			<input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-not-empty" id="CheckAvatar"><span class="ng-binding"> Check Avatar</span></input> | <a href="../cat/">Cắt chuỗi</a></label>
-            <textarea rows="7" id="ListAcc" class="form-control"></textarea>
-          </div>
-          <br>
-          <div class="form-group text-center">
-            <button id="subitCheck" type="submit" class="btn btn-primary btn-block"><i class="fa fa-button"></i>  BẮT ĐẦU </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="col-lg-6 connectedSortable">
-      <div class="card">
-        <div class="card-header bg-success card-outline">
-          <h5 class="card-title m-0">ACC LIVE</h5>
-        </div>
-        <div class="card-body">
-          <label>ACC LIVE:</label>
-          <div class="form-group">
-            <div class="border border-success">
-              <textarea rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');" id="ListLive" data-clipboard-target="#ListLive" readonly=""></textarea>
+            <div class="py-1"></div>
+            <div class="card">
+                <div class="card-header bg-danger card-outline">
+                    <h5 class="card-title m-0">ACC DIE</h5>
+                </div>
+                <div class="card-body">
+                    <label>ACC DIE:</label>
+                    <div class="form-group">
+                        <div class="border border-danger">
+                            <textarea rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');" id="ListDie" data-clipboard-target="#ListDie" readonly=""></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="py-1"></div>
-      <div class="card">
-        <div class="card-header bg-danger card-outline">
-          <h5 class="card-title m-0">ACC DIE</h5>
-        </div>
-        <div class="card-body">
-          <label>ACC DIE:</label>
-          <div class="form-group">
-            <div class="border border-danger">
-              <textarea rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');"  id="ListDie" data-clipboard-target="#ListDie" readonly=""></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>
 <div class="py-2"></div>
 <script>
-  new ClipboardJS('.copy');
-  var accounts;
-  var total;
-  var live;
-  var die;
-  $(function() {
-    $('#subitCheck').click(function(e) {
-      e.preventDefault();
-      var list = $('#ListAcc').val().trim();
-      if (!list) {
-        tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
-        return;
-      }
-      accounts = list.split("\n");
-      total = accounts.length;
-      $('#total').html(total);
-      live = 0;
-      $('#live').html(live);
-      die = 0;
-      $('#die').html(die);
-      handling(0);
+    new ClipboardJS('.copy');
+    var accounts;
+    var total;
+    var live;
+    var die;
+    $(function() {
+        $('#subitCheck').click(function(e) {
+            e.preventDefault();
+            var list = $('#ListAcc').val().trim();
+            if (!list) {
+                tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
+                return;
+            }
+            accounts = list.split("\n");
+            total = accounts.length;
+            $('#total').html(total);
+            live = 0;
+            $('#live').html(live);
+            die = 0;
+            $('#die').html(die);
+            handling(0);
+        });
     });
-  });
 
 
-  function handling(a) {
-    var load = 0;
-    var limit = (total - a) > 100 ? 100: total - a;
-    if (!limit) {
-      tb('success', 'Thông Báo', 'Đã check xong');
-      return;
-    }
-    for (let b = 0; b < limit; b++) {
-      (function(b, account) {
-        try {
-			if (!isNaN(account.split(/[|,/]/)[0]) == false) {
-				var idfb = account.split(/[|,/]/)[1];
-			} else {
-				var idfb = account.split(/[|,/]/)[0];
-			}
-		  var locuid = document.querySelector("#isLoaiTrungLap1").checked;
-		var checkavatar = document.querySelector("#CheckAvatar").checked;
-          var xhr = new XMLHttpRequest();
-		var url = "";
-		var keywork = "";
-		if (checkavatar == true) {
-			url = "picture?type=normal&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
-			keywork = "t1.30497";
-			limit = 1;
-		} else {
-			url = "picture?type=normal";
-			keywork = "//static";
-		}
-
-          xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
-          xhr.onreadystatechange = function() {
-		  if (locuid == true) {
-            if (xhr.readyState == 4) {
-              if (xhr.status == 200) {
-                if (!xhr.responseURL.includes(keywork)) {
-				  $('#live').html(++live);
-                  $('#ListLive').append(account.replace(/\D/g, '') + "\n");
-                } else {
-                  $('#die').html(++die);
-                  $('#ListDie').append(account + "\n");
-                }
-              } else {
-                $('#die').html(++die);
-                $('#ListDie').append(account + "\n");
-              }
-              ++load;
-              if (load >= limit) {
-                handling(a + load);
-              }
-            }
-			} else {
-			            if (xhr.readyState == 4) {
-              if (xhr.status == 200) {
-                if (!xhr.responseURL.includes(keywork)) {
-				  $('#live').html(++live);
-                  $('#ListLive').append(account + "\n");
-                } else {
-                  $('#die').html(++die);
-                  $('#ListDie').append(account + "\n");
-                }
-              } else {
-                $('#die').html(++die);
-                $('#ListDie').append(account + "\n");
-              }
-              ++load;
-              if (load >= limit) {
-                handling(a + load);
-              }
-            }
-			}
-		  if (keywork === "t1.30497") {
-    setTimeout(() => {
-        console.log("executing after 1 second.");
-        // Thực hiện hành động khác ở đây
-    }, 1000); // 1000 milliseconds = 1 second
-}
-          };
-          xhr.send();
-        } catch (error) {
-          $('#die').html(++die);
-          $('#ListDie').append(account + "\n");
-          ++load;
-          if (load >= limit) {
-            handling(a + load);
-          }
+    function handling(a) {
+        var load = 0;
+        var limit = (total - a) > 100 ? 100 : total - a;
+        if (!limit) {
+            tb('success', 'Thông Báo', 'Đã check xong');
+            return;
         }
-      })(b,
-        accounts[a + b]);
+        for (let b = 0; b < limit; b++) {
+            (function(b, account) {
+                try {
+                    if (!isNaN(account.split(/[|,/]/)[0]) == false) {
+                        var idfb = account.split(/[|,/]/)[1];
+                    } else {
+                        var idfb = account.split(/[|,/]/)[0];
+                    }
+                    var locuid = document.querySelector("#isLoaiTrungLap1").checked;
+                    var checkavatar = document.querySelector("#CheckAvatar").checked;
+                    var xhr = new XMLHttpRequest();
+                    var url = "";
+                    var keywork = "";
+                    if (checkavatar == true) {
+                        url = "picture?type=normal&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
+                        keywork = "t1.30497";
+                        limit = 1;
+                    } else {
+                        url = "picture?type=normal";
+                        keywork = "//static";
+                    }
+
+                    xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
+                    xhr.onreadystatechange = function() {
+                        if (locuid == true) {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    if (!xhr.responseURL.includes(keywork)) {
+                                        $('#live').html(++live);
+                                        $('#ListLive').append(account.replace(/\D/g, '') + "\n");
+                                    } else {
+                                        $('#die').html(++die);
+                                        $('#ListDie').append(account + "\n");
+                                    }
+                                } else {
+                                    $('#die').html(++die);
+                                    $('#ListDie').append(account + "\n");
+                                }
+                                ++load;
+                                if (load >= limit) {
+                                    handling(a + load);
+                                }
+                            }
+                        } else {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    if (!xhr.responseURL.includes(keywork)) {
+                                        $('#live').html(++live);
+                                        $('#ListLive').append(account + "\n");
+                                    } else {
+                                        $('#die').html(++die);
+                                        $('#ListDie').append(account + "\n");
+                                    }
+                                } else {
+                                    $('#die').html(++die);
+                                    $('#ListDie').append(account + "\n");
+                                }
+                                ++load;
+                                if (load >= limit) {
+                                    handling(a + load);
+                                }
+                            }
+                        }
+                        if (keywork === "t1.30497") {
+                            setTimeout(() => {
+                                console.log("executing after 1 second.");
+                            }, 1000);
+                        }
+                    };
+                    xhr.send();
+                } catch (error) {
+                    $('#die').html(++die);
+                    $('#ListDie').append(account + "\n");
+                    ++load;
+                    if (load >= limit) {
+                        handling(a + load);
+                    }
+                }
+            })(b,
+                accounts[a + b]);
+        }
     }
-  }
-  function tb(status, title, msg) {
-    Command: toastr[status](msg,
-      title)
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "progressBar": true,
-      "positionClass": "toast-top-right",
-      "onclick": null,
-      "showDuration": "400",
-      "hideDuration": "1000",
-      "timeOut": "4000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "slideDown",
-      "hideMethod": "slideUp"
+
+    function tb(status, title, msg) {
+        Command: toastr[status](msg,
+            title)
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "400",
+            "hideDuration": "1000",
+            "timeOut": "4000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }
     }
-  }
 </script>
