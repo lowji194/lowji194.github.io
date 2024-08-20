@@ -148,97 +148,68 @@
     });
 
 
-    function handling(a) {
-        var load = 0;
-        var limit = (total - a) > 100 ? 100 : total - a;
-        if (!limit) {
-            tb('success', 'Thông Báo', 'Đã check xong');
-            return;
-        }
-        var url = "";
-        var keywork = "";
-        for (let b = 0; b < limit; b++) {
-            (function(b, account) {
-                try {
-                    if (!isNaN(account.split(/[|,/]/)[0]) == false) {
-                        var idfb = account.split(/[|,/]/)[1];
-                    } else {
-                        var idfb = account.split(/[|,/]/)[0];
-                    }
-                    var locuid = document.querySelector("#isLoaiTrungLap1").checked;
-                    var checkavatar = document.querySelector("#CheckAvatar").checked;
-                    var xhr = new XMLHttpRequest();
-                    var url = "";
-                    var keywork = "";
-                    if (checkavatar == true) {
-                        url = "picture?type=normal&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
-                        keywork = "t1.30497";
-                        limit = 1;
-                    } else {
-                        url = "picture?type=normal";
-                        keywork = "//static";
-                    }
-
-                    xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
-                    xhr.onreadystatechange = function() {
-                        if (locuid == true) {
-                            if (xhr.readyState == 4) {
-                                if (xhr.status == 200) {
-                                    if (!xhr.responseURL.includes(keywork)) {
-                                        $('#live').html(++live);
-                                        $('#ListLive').append(account.replace(/\D/g, '') + "\n");
-                                    } else {
-                                        $('#die').html(++die);
-                                        $('#ListDie').append(account + "\n");
-                                    }
-                                } else {
-                                    $('#die').html(++die);
-                                    $('#ListDie').append(account + "\n");
-                                }
-                                ++load;
-                                if (load >= limit) {
-                                    handling(a + load);
-                                }
-                            }
-                        } else {
-                            if (xhr.readyState == 4) {
-                                if (xhr.status == 200) {
-                                    if (!xhr.responseURL.includes(keywork)) {
-                                        $('#live').html(++live);
-                                        $('#ListLive').append(account + "\n");
-                                    } else {
-                                        $('#die').html(++die);
-                                        $('#ListDie').append(account + "\n");
-                                    }
-                                } else {
-                                    $('#die').html(++die);
-                                    $('#ListDie').append(account + "\n");
-                                }
-                                ++load;
-                                if (load >= limit) {
-                                    handling(a + load);
-                                }
-                            }
-                        }
-                    };
-                    xhr.send();
-                } catch (error) {
-                    $('#die').html(++die);
-                    $('#ListDie').append(account + "\n");
-                    ++load;
-                    if (load >= limit) {
-                        handling(a + load);
-                    }
-                }
-            })(b,
-                accounts[a + b]);
-            if (keywork === "t1.30497") {
-                setTimeout(() => {
-                    tb('success', 'Thông Báo', 'executing after 1 second.');
-                }, 1000);
-            }
-        }
+function handling(a) {
+    var load = 0;
+    var limit = (total - a) > 100 ? 100 : total - a;
+    if (!limit) {
+        tb('success', 'Thông Báo', 'Đã check xong');
+        return;
     }
+    for (let b = 0; b < limit; b++) {
+        (function(b, account) {
+            try {
+                var idfb = isNaN(account.split(/[|,/]/)[0]) ? account.split(/[|,/]/)[0] : account.split(/[|,/]/)[1];
+                var locuid = document.querySelector("#isLoaiTrungLap1").checked;
+                var checkavatar = document.querySelector("#CheckAvatar").checked;
+                var xhr = new XMLHttpRequest();
+                var url = "";
+                var keywork = "";
+
+                if (checkavatar == true) {
+                    url = "picture?type=normal&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
+                    keywork = "t1.30497";
+                    limit = 1;
+                } else {
+                    url = "picture?type=normal";
+                    keywork = "//static";
+                }
+
+                xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
+                            $('#live').html(++live);
+                            $('#ListLive').append(account + "\n");
+                        } else {
+                            $('#die').html(++die);
+                            $('#ListDie').append(account + "\n");
+                        }
+                        ++load;
+                        if (load >= limit) {
+                            handling(a + load);
+                        }
+
+                        // Đặt timeout sau khi kiểm tra xong keywork
+                        if (keywork === "t1.30497") {
+                            setTimeout(() => {
+                                tb('success', 'Thông Báo', 'executing after 1 second.');
+                            }, 1000);
+                        }
+                    }
+                };
+                xhr.send();
+            } catch (error) {
+                $('#die').html(++die);
+                $('#ListDie').append(account + "\n");
+                ++load;
+                if (load >= limit) {
+                    handling(a + load);
+                }
+            }
+        })(b, accounts[a + b]);
+    }
+}
+
 
     function tb(status, title, msg) {
         Command: toastr[status](msg,
