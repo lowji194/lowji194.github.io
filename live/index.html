@@ -74,11 +74,12 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Nhập List UID:</label><br/>
+                        <label>Nhập List UID:</label>
+                        <br/>
                         <label for="isLoaiTrungLap1">Lọc UID từ list</label>
                         <input type="checkbox" id="isLoaiTrungLap1" /> |
                         <label for="CheckAvatar">Check Avatar</label>
-                        <input type="checkbox" id="CheckAvatar" /> | 
+                        <input type="checkbox" id="CheckAvatar" /> |
                         <a href="../cat/">Cắt chuỗi</a>
                         <textarea rows="7" id="ListAcc" class="form-control"></textarea>
                     </div>
@@ -154,8 +155,8 @@
             tb('success', 'Thông Báo', 'Đã check xong');
             return;
         }
-                    var url = "";
-                    var keywork = "";
+        var url = "";
+        var keywork = "";
         for (let b = 0; b < limit; b++) {
             (function(b, account) {
                 try {
@@ -233,7 +234,7 @@
                 accounts[a + b]);
             if (keywork === "t1.30497") {
                 setTimeout(() => {
-                     tb('success', 'Thông Báo', 'executing after 1 second.');
+                    tb('success', 'Thông Báo', 'executing after 1 second.');
                 }, 1000);
             }
         }
