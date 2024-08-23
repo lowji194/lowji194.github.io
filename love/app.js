@@ -1,5 +1,5 @@
 const yourDate = new Date("2024-05-20T00:00:00"),
-const yourDate1 = new Date("2024-06-30T00:00:00"),
+// var yourDate1 = new Date("2024-06-30T00:00:00"),
 music = ['ido', 'noinaycoanh', 'nguoiamphu'];
 
 document.addEventListener('DOMContentLoaded', function(){
