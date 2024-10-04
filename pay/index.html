@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin tài khoản ngân hàng</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .bank-info {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .bank-info p {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #34495e;
+        }
+        .bank-info p strong {
+            color: #e74c3c;
+        }
+        .qr-code {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-code h3 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .qr-code img {
+            width: 220px;
+            height: 220px;
+            border: 5px solid #ecf0f1;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .qr-code img:hover {
+            transform: scale(1.1);
+        }
+        /* Button Copy */
+        .copy-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #c0392b;
+        }
+        /* Toast Notification */
+        .toast {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            margin: 10px 0; /* Khoảng cách giữa toast và các phần tử khác */
+            display: none; /* Ẩn thông báo mặc định */
+        }
+        .toast.show {
+            display: block; /* Hiện thông báo khi cần */
+            opacity: 1; /* Hiện thông báo */
+        }
+    </style>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+
+    <script>
+        function copyAccountNumber() {
+            var clipboard = new ClipboardJS('.copy-btn', {
+                text: function() {
+                    return '0963159294'; // Số tài khoản ngân hàng
+                }
+            });
+
+            clipboard.on('success', function(e) {
+                showToast("Sao chép số tài khoản thành công: " + e.text);
+                e.clearSelection(); // Xóa vùng được chọn sau khi sao chép
+            });
+
+            clipboard.on('error', function(e) {
+                showToast("Lỗi: Không thể sao chép số tài khoản.");
+            });
+        }
+
+        function showToast(message) {
+            var toastContainer = document.getElementById('toast-container');
+            toastContainer.innerText = message;
+            toastContainer.classList.add('show');
+
+            // Ẩn thông báo sau 3 giây
+            setTimeout(function() {
+                toastContainer.classList.remove('show');
+                setTimeout(function() {
+                    toastContainer.innerText = ""; // Xóa nội dung thông báo
+                }, 500);
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Thông tin tài khoản ngân hàng</h2>
+        <div id="toast-container" class="toast"></div> <!-- Phần tử chứa thông báo toast -->
+        <div class="bank-info">
+            <p><strong>Tên ngân hàng:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>Ngân hàng Vietinbank</b></p>
+            <p><strong>Tên chủ tài khoản:</strong>&#160;&#160;<b>Nguyễn Thế Lợi</b></p>
+            <p><strong>Số tài khoản:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<b>0963159294</b></p>
+        </div>
+        <div class="qr-code">
+            <h3>Mã QR thanh toán</h3>
+            <img src="QR.png?text=QR+Code" alt="QR Code">
+        </div>
+        <button class="copy-btn" onclick="copyAccountNumber()">Sao chép số tài khoản</button>
+    </div>
+</body>
+</html>
