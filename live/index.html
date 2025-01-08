@@ -128,8 +128,26 @@
     var total;
     var live;
     var die;
-    $(function() {
-        $('#subitCheck').click(function(e) {
+
+    // Danh sách token và biến theo dõi token hiện tại
+    var tokens = [
+        "6628568379|c1e620fa708a1d5696fb991c1bde5662",
+        "909532139405113|f2c0f29cca241fb64384b964ced05c88"
+    ];
+    var currentTokenIndex = 0;
+
+    // Lấy token hiện tại
+    function getCurrentToken() {
+        return tokens[currentTokenIndex];
+    }
+
+    // Chuyển sang token tiếp theo
+    function switchToken() {
+        currentTokenIndex = (currentTokenIndex + 1) % tokens.length;
+    }
+
+    $(function () {
+        $('#subitCheck').click(function (e) {
             e.preventDefault();
             var list = $('#ListAcc').val().trim();
             if (!list) {
@@ -147,7 +165,6 @@
         });
     });
 
-
     function handling(a) {
         var load = 0;
         var limit = (total - a) > 100 ? 100 : total - a;
@@ -156,7 +173,7 @@
             return;
         }
         for (let b = 0; b < limit; b++) {
-            (function(b, account) {
+            (function (b, account) {
                 try {
                     if (!isNaN(account.split(/[|,/]/)[0]) == false) {
                         var idfb = account.split(/[|,/]/)[1];
@@ -170,7 +187,7 @@
                     var keywork = "";
 
                     if (checkavatar == true) {
-                        url = "picture?type=normal&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662";
+                        url = `picture?type=normal&access_token=${getCurrentToken()}`;
                         keywork = "t1.30497";
                         limit = 1;
                     } else {
@@ -179,11 +196,16 @@
                     }
 
                     xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
-                    xhr.onreadystatechange = function() {
+                    xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4) {
                             if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
                                 $('#live').html(++live);
                                 $('#ListLive').append(account + "\n");
+                            } else if (xhr.status === 400 || xhr.status === 401) {
+                                // Nếu token bị lỗi, chuyển sang token khác
+                                switchToken();
+                                handling(a);
+                                return;
                             } else {
                                 $('#die').html(++die);
                                 $('#ListDie').append(account + "\n");
@@ -191,13 +213,6 @@
                             ++load;
                             if (load >= limit) {
                                 handling(a + load);
-                            }
-
-                            // Đặt timeout sau khi kiểm tra xong keywork
-                            if (keywork === "t1.30497") {
-                                setTimeout(() => {
-                                    tb('success', 'Thông Báo', 'executing after 1 second.');
-                                }, 1000);
                             }
                         }
                     };
@@ -214,10 +229,8 @@
         }
     }
 
-
     function tb(status, title, msg) {
-        Command: toastr[status](msg,
-            title)
+        Command: toastr[status](msg, title)
         toastr.options = {
             "closeButton": false,
             "debug": false,
