@@ -11,6 +11,117 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 		  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
         <title>Cắt chuỗi</title>
+		<style>
+		        /* Dark Mode Styles */
+        body {
+            background-color: #1e1e1e; /* Màu nền tối */
+            color: #d4d4d4; /* Màu chữ sáng */
+            font-family: 'Courier New', Courier, monospace; /* Font giống terminal */
+        }
+
+        .container {
+            background-color: #2d2d2d; /* Nền tối cho container */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #76c7c0; /* Màu chữ sáng cho tiêu đề */
+        }
+
+        .nav-tabs {
+            background-color: #333;
+            border: none;
+        }
+
+        .nav-item .nav-link {
+            background-color: #444;
+            color: #bbb;
+            border: none;
+            border-radius: 0;
+        }
+
+        .nav-item .nav-link.active {
+            background-color: #76c7c0;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            background-color: #333;
+            color: #ddd;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            border-color: #76c7c0;
+            box-shadow: 0 0 5px rgba(118, 199, 192, 0.6);
+        }
+
+        .btn {
+            background-color: #76c7c0;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #66b5b0;
+        }
+
+        .btn:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+        }
+
+        textarea {
+            background-color: #222;
+            color: #ddd;
+            border: 1px solid #555;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        textarea:focus {
+            border-color: #76c7c0;
+            box-shadow: 0 0 5px rgba(118, 199, 192, 0.6);
+        }
+
+        .checkbox-inline {
+            color: #bbb;
+        }
+
+        .nav-tabs .nav-item {
+            margin-right: 10px;
+        }
+
+        .ng-binding {
+            color: #bbb;
+        }
+
+        .copy {
+            cursor: pointer;
+        }
+
+        .copy:hover {
+            background-color: #555;
+        }
+
+        /* Toastr styling */
+        .toast {
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
     </head>
     <body>
         <div class="container">
@@ -95,7 +206,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-6">
-                                <span ng-click="cms_form2.$invalid || cut_text()" ng-disabled="cms_form2.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" disabled="disabled" onclick="catchuoi()">Bắt đầu cắt</span>
+                                <span style="color:#ffffff" ng-click="cms_form2.$invalid || cut_text()" ng-disabled="cms_form2.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" disabled="disabled" onclick="catchuoi()">Bắt đầu cắt</span>
                             </div>
                         </div>
                         <!-- ngIf: cms_form_data.object.cut_output -->
@@ -156,7 +267,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-6">
-                                <span ng-click="cms_form3.$invalid || merge_text()" ng-disabled="cms_form3.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="ghepchuoi()">Bắt đầu ghép</span>
+                                <span style="color:#ffffff" ng-click="cms_form3.$invalid || merge_text()" ng-disabled="cms_form3.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="ghepchuoi()">Bắt đầu ghép</span>
                             </div>
                         </div>
                         <div class="form-group ng-scope" ng-if="cms_form_data.object.merge_output">
@@ -224,7 +335,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-6">
-                                <span ng-click="cms_form12.$invalid || filter_merge_file()" ng-disabled="cms_form12.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="ghepfile()">Bắt đầu ghép</span>
+                                <span style="color:#ffffff" ng-click="cms_form12.$invalid || filter_merge_file()" ng-disabled="cms_form12.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="ghepfile()">Bắt đầu ghép</span>
                             </div>
                         </div>
                         <!-- ngIf: cms_form_data.object.filter_merge_file_output -->
@@ -263,7 +374,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">&nbsp;</label>
                             <div class="col-sm-6">
-                                <span ng-click="cms_form12.$invalid || filter_merge_file()" ng-disabled="cms_form12.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="loctrungchuoi()">Lọc trùng</span>
+                                <span style="color:#ffffff" ng-click="cms_form12.$invalid || filter_merge_file()" ng-disabled="cms_form12.$invalid" class="btn btn-warning btn_control_box btn-block ng-binding" onclick="loctrungchuoi()">Lọc trùng</span>
                             </div>
                         </div>
                         <!-- ngIf: cms_form_data.object.filter_merge_file_output -->
