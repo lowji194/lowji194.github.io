@@ -22,6 +22,99 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Check Live UID</title>
+    <style>
+    body {
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .card {
+        background-color: #333333;
+        border: 1px solid #444444;
+        color: #ffffff;
+    }
+
+    .card-header {
+        background-color: #2e2e2e;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .badge {
+        background-color: #555555;
+        color: #ffffff;
+    }
+
+    .form-control {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border: 1px solid #444444;
+    }
+
+    .form-control:focus {
+        border-color: #0066cc;
+        background-color: #333333;
+        color: #ffffff;
+    }
+
+    .btn {
+        background-color: #444444;
+        color: #ffffff;
+        border: 1px solid #555555;
+    }
+
+    .btn:hover {
+        background-color: #555555;
+        border-color: #666666;
+    }
+
+    .text-left, .text-right, .h5 {
+        color: #dcdcdc;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-footer {
+        background-color: #2e2e2e;
+    }
+
+    .border-success {
+        border: 1px solid #28a745;
+    }
+
+    .border-danger {
+        border: 1px solid #dc3545;
+    }
+
+    .copy {
+        background-color: #333333;
+        color: #ffffff;
+        border: 1px solid #444444;
+    }
+
+    /* Toastr styles for dark mode */
+    .toast-top-right {
+        background-color: #333333;
+        color: #dcdcdc;
+        border-radius: 5px;
+    }
+
+    .toast-title {
+        font-weight: bold;
+    }
+
+    .toast-message {
+        color: #dcdcdc;
+    }
+</style>
+
 </head>
 <script>
     $(document).ready(function() {
