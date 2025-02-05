@@ -274,7 +274,7 @@
                     var keywork = "";
 
                     if (checkavatar == true) {
-                        url = picture?type=normal&access_token=${getCurrentToken()};
+                        url = `picture?type=normal&access_token=${getCurrentToken()}`;
                         keywork = "t1.30497";
                         limit = 1;
                     } else {
@@ -282,7 +282,7 @@
                         keywork = "//static";
                     }
 
-                    xhr.open('GET', https://graph.facebook.com/${idfb}/${url}, true);
+                    xhr.open('GET',` https://graph.facebook.com/${idfb}/${url}`, true);
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4) {
                             if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
