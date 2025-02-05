@@ -217,122 +217,139 @@
     var live;
     var die;
 
-    // Danh sách token và biến theo dõi token hiện tại
-    var tokens = [
-        "6628568379|c1e620fa708a1d5696fb991c1bde5662",
-        "909532139405113|f2c0f29cca241fb64384b964ced05c88"
-    ];
-    var currentTokenIndex = 0;
+// Danh sách token và biến theo dõi token hiện tại
+var tokens = [
+    "6628568379|c1e620fa708a1d5696fb991c1bde5662",
+    "909532139405113|f2c0f29cca241fb64384b964ced05c88"
+];
+var currentTokenIndex = 0;
 
-    // Lấy token hiện tại
-    function getCurrentToken() {
-        return tokens[currentTokenIndex];
+// Lấy token hiện tại
+function getCurrentToken() {
+    return tokens[currentTokenIndex];
+}
+
+// Chuyển sang token tiếp theo
+function switchToNextToken() {
+    currentTokenIndex = (currentTokenIndex + 1) % tokens.length;
+}
+
+// Hiển thị thông báo bằng Toastr
+function showNotification(status, title, message) {
+    Command: toastr[status](message, title);
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "showDuration": "400",
+        "hideDuration": "1000",
+        "timeOut": "4000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "slideDown",
+        "hideMethod": "slideUp"
+    };
+}
+
+// Xử lý kiểm tra danh sách UID
+function startChecking() {
+    var list = $('#ListAcc').val().trim();
+    if (!list) {
+        showNotification('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
+        return;
     }
+    
+    accounts = list.split("\n");
+    total = accounts.length;
+    $('#total').html(total);
+    live = 0;
+    $('#live').html(live);
+    die = 0;
+    $('#die').html(die);
+    processChecking(0);
+}
 
-    // Chuyển sang token tiếp theo
-    function switchToken() {
-        currentTokenIndex = (currentTokenIndex + 1) % tokens.length;
+// Xử lý kiểm tra UID từ danh sách
+function processChecking(index) {
+    var load = 0;
+    var batchSize = (total - index) > 100 ? 100 : total - index;
+    if (!batchSize) {
+        showNotification('success', 'Thông Báo', 'Đã check xong');
+        return;
     }
+    
+    for (let i = 0; i < batchSize; i++) {
+        (function (i, account) {
+            try {
+                var idfb = extractFacebookID(account);
+                var checkAvatar = document.querySelector("#CheckAvatar").checked;
+                
+                var requestURL = checkAvatar ? `picture?type=normal&access_token=${getCurrentToken()}` : "picture?type=normal";
+                var expectedKeyword = checkAvatar ? "t1.30497" : "//static";
 
-    $(function () {
-        $('#subitCheck').click(function (e) {
-            e.preventDefault();
-            var list = $('#ListAcc').val().trim();
-            if (!list) {
-                tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
-                return;
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `https://graph.facebook.com/${idfb}/${requestURL}`, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        handleResponse(xhr, account, index, load, batchSize);
+                    }
+                };
+                xhr.send();
+            } catch (error) {
+                markAccountAsDead(account);
+                checkBatchCompletion(index, load, batchSize);
             }
-            accounts = list.split("\n");
-            total = accounts.length;
-            $('#total').html(total);
-            live = 0;
-            $('#live').html(live);
-            die = 0;
-            $('#die').html(die);
-            handling(0);
-        });
+        })(i, accounts[index + i]);
+    }
+}
+
+// Trích xuất Facebook ID từ chuỗi tài khoản
+function extractFacebookID(account) {
+    var parts = account.split(/[|,/]/);
+    return isNaN(parts[0]) ? parts[0] : parts[1];
+}
+
+// Xử lý phản hồi từ API
+function handleResponse(xhr, account, index, load, batchSize) {
+    if (xhr.status == 200 && !xhr.responseURL.includes(expectedKeyword)) {
+        markAccountAsLive(account);
+    } else if (xhr.status === 400 || xhr.status === 401) {
+        markAccountAsDead(account, "Lỗi token");
+        switchToNextToken();
+    } else {
+        markAccountAsDead(account);
+    }
+    checkBatchCompletion(index, load, batchSize);
+}
+
+// Đánh dấu tài khoản là live
+function markAccountAsLive(account) {
+    $('#live').html(++live);
+    $('#ListLive').append(account + "\n");
+}
+
+// Đánh dấu tài khoản là die
+function markAccountAsDead(account, reason = "") {
+    $('#die').html(++die);
+    $('#ListDie').append(account + (reason ? ` (${reason})` : "") + "\n");
+}
+
+// Kiểm tra xem có hoàn thành batch hiện tại không
+function checkBatchCompletion(index, load, batchSize) {
+    ++load;
+    if (load >= batchSize) {
+        processChecking(index + load);
+    }
+}
+
+// Bắt đầu kiểm tra khi nhấn nút
+$(function () {
+    $('#subitCheck').click(function (e) {
+        e.preventDefault();
+        startChecking();
     });
+});
 
-    function handling(a) {
-        var load = 0;
-        var limit = (total - a) > 100 ? 100 : total - a;
-        if (!limit) {
-            tb('success', 'Thông Báo', 'Đã check xong');
-            return;
-        }
-        for (let b = 0; b < limit; b++) {
-            (function (b, account) {
-                try {
-                    if (!isNaN(account.split(/[|,/]/)[0]) == false) {
-                        var idfb = account.split(/[|,/]/)[1];
-                    } else {
-                        var idfb = account.split(/[|,/]/)[0];
-                    }
-                    var locuid = document.querySelector("#isLoaiTrungLap1").checked;
-                    var checkavatar = document.querySelector("#CheckAvatar").checked;
-                    var xhr = new XMLHttpRequest();
-                    var url = "";
-                    var keywork = "";
-
-                    if (checkavatar == true) {
-                        url = `picture?type=normal&access_token=${getCurrentToken()}`;
-                        keywork = "t1.30497";
-                        limit = 1;
-                    } else {
-                        url = "picture?type=normal";
-                        keywork = "//static";
-                    }
-
-                    xhr.open('GET', `https://graph.facebook.com/${idfb}/${url}`, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4) {
-                            if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
-                                $('#live').html(++live);
-                                $('#ListLive').append(account + "\n");
-                            } else if (xhr.status === 400 || xhr.status === 401) {
-                                // Nếu token bị lỗi, chuyển sang token khác
-                                switchToken();
-                                handling(a);
-                                return;
-                            } else {
-                                $('#die').html(++die);
-                                $('#ListDie').append(account + "\n");
-                            }
-                            ++load;
-                            if (load >= limit) {
-                                handling(a + load);
-                            }
-                        }
-                    };
-                    xhr.send();
-                } catch (error) {
-                    $('#die').html(++die);
-                    $('#ListDie').append(account + "\n");
-                    ++load;
-                    if (load >= limit) {
-                        handling(a + load);
-                    }
-                }
-            })(b, accounts[a + b]);
-        }
-    }
-
-    function tb(status, title, msg) {
-        Command: toastr[status](msg, title)
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "onclick": null,
-            "showDuration": "400",
-            "hideDuration": "1000",
-            "timeOut": "4000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "slideDown",
-            "hideMethod": "slideUp"
-        }
-    }
 </script>
