@@ -248,11 +248,11 @@
             $('#live').html(live);
             die = 0;
             $('#die').html(die);
-            handling(0);
+            Check_Live_UID(0);
         });
     });
 
-    function handling(a) {
+    function Check_Live_UID(a) {
         var load = 0;
         var limit = (total - a) > 100 ? 100 : total - a;
         if (!limit) {
@@ -267,6 +267,14 @@
                     } else {
                         var idfb = account.split(/[|,/]/)[0];
                     }
+					
+                    if (/\D/.test(idfb)) { // Kiểm tra nếu ID chứa ký tự chữ
+                        $('#die').html(++die);
+                        $('#ListDie').append(account + "\n");
+                        ++load;
+						return;
+                    }
+					
                     var locuid = document.querySelector("#isLoaiTrungLap1").checked;
                     var checkavatar = document.querySelector("#CheckAvatar").checked;
                     var xhr = new XMLHttpRequest();
@@ -291,7 +299,7 @@
                             } else if (xhr.status === 400 || xhr.status === 401) {
                                 // Nếu token bị lỗi, chuyển sang token khác
                                 switchToken();
-                                handling(a);
+                                Check_Live_UID(a);
                                 return;
                             } else {
                                 $('#die').html(++die);
@@ -299,7 +307,7 @@
                             }
                             ++load;
                             if (load >= limit) {
-                                handling(a + load);
+                                Check_Live_UID(a + load);
                             }
                         }
                     };
@@ -309,7 +317,7 @@
                     $('#ListDie').append(account + "\n");
                     ++load;
                     if (load >= limit) {
-                        handling(a + load);
+                        Check_Live_UID(a + load);
                     }
                 }
             })(b, accounts[a + b]);
