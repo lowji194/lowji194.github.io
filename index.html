@@ -1,102 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nguyễn Thế Lợi</title>
-  <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/responsive.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="https://graph.facebook.com/100005942927037/picture?type=large&width=500&height=500&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662" type="image/x-icon">
+    <title>Tra cứu phạt nguội</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
 </head>
 
-<body>
-  <div id="root">
-    <div id="main">
-      <div class="container">
-        <header>
-          <div id="cover-image" style="background-image: url('./images/background.gif');"></div>
-          <div id="profile-header">
-            <div id="avatar-image" style="background-image: url('24223038.png');"></div>
-            <div id="name">
-              <p id="first-name" class="names">Nguyễn Thế Lợi <i style="color:rgb(17, 143, 249)" title="Đã xác minh" class="far fa-check-circle"></i>
-              </p>
-              <p id="nickname" class="nicknames"></p>
-              <div id="skills">
-                <div class="skill-item" style="color:#ff758f;">Developer</div>
-                <div class="skill-item" style="color:#85D18A;">Youtuber</div>
-              </div>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-7xl">
+        <div class="text-center mb-12">
+            <div class="flex justify-center mb-4">
+                <i class="fas fa-shield-alt text-5xl text-blue-600"></i>
             </div>
-          </div>
-          <div class="bio-story">
-            <div class="bio-story-thumb" style="background-image: url('./images/favicon.png');"></div>
-            <div class="bio-story-content" style="margin-top: 0px;">
-              <p>Cuộc sống không phải là phim ảnh, không có nhiều đến thế… những lần không hẹn mà gặp.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 tracking-tight">
+                Tra cứu vi phạm giao thông
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Hệ thống tra cứu thông tin vi phạm giao thông trực tuyến
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+                <p>Developed by <a href="https://theloi.io.vn" class="text-blue-600 hover:underline">Lợi Nguyễn</a>
+                </p>
             </div>
-          </div>
-        </header>
-        <div id="content-body">
-          <p class="drop-title">Liên kết cá nhân</p>
-          <div id="link-box">
-            <div class="link-item">
-              <div class="bio-story-thumb" style="background-image: url('https://graph.facebook.com/100005942927037/picture?type=large&width=500&height=500&access_token=6628568379|c1e620fa708a1d5696fb991c1bde5662');"></div>
-              <div class="link-content">
-                <p>Lợi Nguyễn</p>
-                <span onclick="window.open('https://facebook.com/100005942927037/', '_blank')">Facebook</span>
-              </div>
-              <div class="link-btn">
-                <div class="link-btn-chill light-orange" onclick="window.open('https://www.facebook.com/100005942927037/', '_blank')">OPEN</div>
-              </div>
-            </div>
-            <div class="link-item">
-              <div class="bio-story-thumb" style="background-image: url('./images/zalo.jpg');"></div>
-              <div class="link-content">
-                <p>Lợi Nguyễn</p>
-                <span onclick="window.open('https://zalo.me/0963159294', '_blank')">Zalo</span>
-              </div>
-              <div class="link-btn">
-                <div class="link-btn-chill light-orange" onclick="window.open('https://zalo.me/0963159294', '_blank')">OPEN</div>
-              </div>
-            </div>
-            <div class="link-item">
-              <div class="bio-story-thumb" style="background-image: url('./images/youtube.png');"></div>
-              <div class="link-content">
-                <p>@Lowji194</p>
-                <span onclick="window.open('https://www.youtube.com/Lowji194/', '_blank')">Youtube</span>
-              </div>
-              <div class="link-btn">
-                <div class="link-btn-chill light-orange" onclick="window.open('https://www.youtube.com/Lowji194/', '_blank')">OPEN</div>
-              </div>
-            </div>
-            <div class="link-item">
-              <div class="bio-story-thumb" style="background-image: url('./images/Logo-VietinBank-CTG-Ori.webp');"></div>
-              <div class="link-content">
-                <p>Thanh Toán</p>
-                <span onclick="window.open('https://lowji194.github.io/pay', '_blank')"></span>
-              </div>
-              <div class="link-btn">
-                <div class="link-btn-chill light-orange" onclick="window.open('https://lowji194.github.io/pay', '_blank')">OPEN</div>
-              </div>
-            </div>
-            <div class="link-item">
-              <div class="bio-story-thumb" style="background-image: url('./images/live.png');"></div>
-              <div class="link-content">
-                <p>Check Live UID</p>
-              </div>
-              <div class="link-btn">
-                <a style="text-decoration: none" class="link-btn-chill light-orange" href='./live'>OPEN</a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" crossorigin="anonymous"></script>
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 transform hover:shadow-2xl transition-all duration-300">
+            <form id="searchForm" class="space-y-6">
+                <div>
+                    <label for="plateNumber" class="block text-lg font-medium text-gray-700 mb-3">
+                        <i class="fas fa-car-side mr-2 text-blue-600"></i>Biển số xe
+                    </label>
+                    <input type="text" id="plateNumber" name="bienso" required pattern="^[0-9]{2}[A-Z][0-9]{5,6}$|^[0-9]{2}[A-Z]-[0-9]{3}.[0-9]{2}$" class="w-full px-5 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200" placeholder="Nhập biển số xe (VD: 51F-123.45 hoặc 51F12345)">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 text-lg flex items-center justify-center group">
+                    <i class="fas fa-search mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span>Kiểm tra ngay</span>
+                </button>
+            </form>
+        </div>
+
+        <div id="loading" class="flex items-center justify-center gap-4 hidden mt-6 text-2xl font-bold text-gray-700">
+            <img src="chay.gif" class="h-12 w-auto">
+            <span>Đang kiểm tra...</span>
+            <img src="khimoto.gif" class="h-12 w-auto">
+        </div>
+        <div id="result" class="mt-8"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').submit(function(event) {
+                event.preventDefault();
+                var bienso = $('#plateNumber').val().replace(/\s+/g, "").replace(/[^a-zA-Z0-9]/g, "");
+
+                if (!bienso) {
+                    toastr.error("Vui lòng nhập biển số xe!", "Lỗi nhập liệu");
+                    return;
+                }
+
+                // Kiểm tra định dạng biển số xe
+                var pattern = /^\d{2}[A-Z]\d{5,6}$/;
+                if (!pattern.test(bienso)) {
+                    toastr.warning("Biển số xe không đúng định dạng!", "Cảnh báo");
+                    return;
+                }
+
+                $('#loading').removeClass('hidden');
+                $('#result').html('');
+
+                $.ajax({
+                    url: 'https://api.checkphatnguoi.vn/phatnguoi',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        bienso: bienso
+                    }),
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        $('#loading').addClass('hidden');
+
+                        if (response.error) {
+                            toastr.error(response.error, "Lỗi kiểm tra");
+                        } else {
+                            let dataHtml = '';
+                            try {
+                                response.data.forEach(item => {
+                                    let noiGiaiQuyet = Array.isArray(item["Nơi giải quyết vụ việc"]) ? item["Nơi giải quyết vụ việc"].map(ngq => `<p class="text-lg text-gray-700"><i class="fas fa-map-marker-alt text-blue-600"></i> ${ngq}</p>`).join('') : '';
+
+                                    let trangThaiClass = item["Trạng thái"] === "Chưa xử phạt" ? "text-red-600" : "text-green-600";
+
+                                    dataHtml += `
+                            <div class="bg-gray-50 p-6 rounded-lg mb-6 border-l-8 border-blue-600 shadow-md">
+                                <p class="text-2xl font-bold text-gray-900">🚗 Biển số: <span class="text-blue-700">${item["Biển kiểm soát"]}</span></p>
+                                <p class="text-lg"><strong>🔹 Loại xe:</strong> ${item["Loại phương tiện"]}</p>
+                                <p class="text-lg"><strong>⏰ Thời gian vi phạm:</strong> ${item["Thời gian vi phạm"]}</p>
+                                <p class="text-lg"><strong>📍 Địa điểm:</strong> ${item["Địa điểm vi phạm"]}</p>
+                                <p class="text-lg"><strong>⚠️ Hành vi vi phạm:</strong> <span class="text-red-700 font-semibold">${item["Hành vi vi phạm"]}</span></p>
+                                <p class="text-lg"><strong>📌 Trạng thái:</strong> <span class="${trangThaiClass}">${item["Trạng thái"]}</span></p>
+                                <p class="text-lg"><strong>🏢 Nơi giải quyết vụ việc:</strong> ${noiGiaiQuyet}</p>
+                            </div>
+                        `;
+                                });
+
+                                $('#result').html(dataHtml);
+                            } catch (error) {
+                                $('#loading').removeClass('hidden').html('<p class="text-red-600 font-semibold text-lg">❌ Dữ liệu phản hồi không hợp lệ hoặc có lỗi khi xử lý!</p>');
+                            }
+                        }
+                    },
+                    error: function() {
+                        $('#loading').removeClass('hidden').html('<p class="text-red-600 font-semibold text-lg">Lỗi kết nối hoặc máy chủ không phản hồi!</p>');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
