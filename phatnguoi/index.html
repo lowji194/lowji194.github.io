@@ -74,7 +74,7 @@
                 }
 
                 // Kiểm tra định dạng biển số xe
-                var pattern = /^\d{2}[A-Z]\d{5,6}$/;
+                var pattern = /^\d{2}[A-Z]{1,2}\d{5,6}$/;
                 if (!pattern.test(bienso)) {
                     toastr.warning("Biển số xe không đúng định dạng!", "Cảnh báo");
                     return;
