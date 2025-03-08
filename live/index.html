@@ -1,345 +1,237 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Copyjs -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <!-- Ajax Lib -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Live UID</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
-    <!-- DATATABLES -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Check Live UID</title>
-    <style>
-    body {
-        background-color: #1e1e1e;
-        color: #dcdcdc;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    .container {
-        margin-top: 20px;
-    }
-
-    .card {
-        background-color: #333333;
-        border: 1px solid #444444;
-        color: #ffffff;
-    }
-
-    .card-header {
-        background-color: #2e2e2e;
-        color: #ffffff;
-        font-weight: bold;
-    }
-
-    .form-control {
-        background-color: #2a2a2a;
-        color: #ffffff;
-        border: 1px solid #444444;
-    }
-
-    .form-control:focus {
-        border-color: #0066cc;
-        background-color: #333333;
-        color: #ffffff;
-    }
-
-    .btn {
-        background-color: #444444;
-        color: #ffffff;
-        border: 1px solid #555555;
-    }
-
-    .btn:hover {
-        background-color: #555555;
-        border-color: #666666;
-    }
-
-    .text-left, .text-right, .h5 {
-        color: #dcdcdc;
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-
-    .card-footer {
-        background-color: #2e2e2e;
-    }
-
-    .border-success {
-        border: 1px solid #28a745;
-    }
-
-    .border-danger {
-        border: 1px solid #dc3545;
-    }
-
-    .copy {
-        background-color: #333333;
-        color: #ffffff;
-        border: 1px solid #444444;
-    }
-
-    /* Toastr styles for dark mode */
-    .toast-top-right {
-        background-color: #333333;
-        color: #dcdcdc;
-        border-radius: 5px;
-    }
-
-    .toast-title {
-        font-weight: bold;
-    }
-
-    .toast-message {
-        color: #dcdcdc;
-    }
-</style>
-
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<script>
-    $(document).ready(function() {
-        $('#db').DataTable({
-            "responsive": false,
-            "autoWidth": true,
-        });
-    });
-</script>
-<div class="container">
-    <div class="row">
-        <section class="col-lg-6 connectedSortable">
-            <div class="card">
-                <div class="card-header bg-danger card-outline">
-                    <h5 class="card-title m-0">Thông Tin</h5>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <div class="d-flex justify-content-between bd-highlight mb-3">
-                            <p class="text-left h5">
-                                Tổng số UID:
-                            </p>
-                            <p class="text-right h5">
-                                <span id="total" class="badge badge-primary">0</span>
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-between bd-highlight mb-3">
-                            <p class="text-left h5">
-                                Tổng số UID Live:
-                            </p>
-                            <p class="text-right h5">
-                                <span id="live" class="badge badge-success">0</span>
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-between bd-highlight mb-3">
-                            <p class="text-left h5">
-                                Tổng số UID Die:
-                            </p>
-                            <p class="text-right h5">
-                                <span id="die" class="badge badge-danger">0</span>
-                            </p>
+
+<body class="bg-gray-900 text-gray-300 font-mono">
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <section>
+                <div class="card bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+                    <div class="card-header bg-red-700 p-4 rounded-t-lg">
+                        <h5 class="text-white font-bold">Thông Tin</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <p class="text-left">Tổng số UID:</p>
+                                <p class="text-right"><span id="total" class="badge bg-blue-500 border-2 border-blue-300 p-2">0</span>
+                                </p>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-left">Tổng số UID Live:</p>
+                                <p class="text-right"><span id="live" class="badge bg-green-500 border-2 border-green-300 p-2">0</span>
+                                </p>
+                            </div>
+                            <div class="flex justify-between">
+                                <p class="text-left">Tổng số UID Die:</p>
+                                <p class="text-right"><span id="die" class="badge bg-red-500 border-2 border-red-300 p-2">0</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="py-1"></div>
-            <div class="card">
-                <div class="card-header bg-primary card-outline">
-                    <h5 class="card-title m-0">DANH SÁCH ID CẦN CHECK</h5>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Nhập List UID:</label>
-                        <br/>
-                        <label for="isLoaiTrungLap1">Lọc UID từ list</label>
-                        <input type="checkbox" id="isLoaiTrungLap1" /> |
-                        <label for="CheckAvatar">Check Avatar</label>
-                        <input type="checkbox" id="CheckAvatar" /> |
-                        <a href="../cat/">Cắt chuỗi</a>
-                        <textarea style="white-space: pre; overflow-wrap: normal;" rows="7" id="ListAcc" class="form-control"></textarea>
+                <div class="py-2"></div>
+                <div class="card bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+                    <div class="card-header bg-blue-700 p-4 rounded-t-lg">
+                        <h5 class="text-white font-bold">DANH SÁCH ID CẦN CHECK</h5>
                     </div>
-                    <br>
-                    <div class="form-group text-center">
-                        <button id="subitCheck" type="submit" class="btn btn-primary btn-block"><i class="fa fa-button"></i> BẮT ĐẦU </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="col-lg-6 connectedSortable">
-            <div class="card">
-                <div class="card-header bg-success card-outline">
-                    <h5 class="card-title m-0">ACC LIVE</h5>
-                </div>
-                <div class="card-body">
-                    <label>ACC LIVE:</label>
-                    <div class="form-group">
-                        <div class="border border-success">
-                            <textarea style="background-color: #2a2a2a; white-space: pre; overflow-wrap: normal;" rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');" id="ListLive" data-clipboard-target="#ListLive" readonly=""></textarea>
+                    <div class="card-body p-4">
+                        <div class="space-y-3">
+                            <label>Nhập List UID:</label>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="isLoaiTrungLap1" class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="isLoaiTrungLap1" class="text-gray-300 hover:text-gray-100 font-medium">Lọc UID từ list</label>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="checkbox" id="CheckAvatar" class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="CheckAvatar" class="text-gray-300 hover:text-gray-100 font-medium">Check Avatar</label>
+                                </div>
+                                <a href="../cat/" class="bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300">
+    Cắt chuỗi
+</a>
+                            </div>
+                            <textarea rows="7" id="ListAcc" class="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white"></textarea>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button id="subitCheck" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">BẮT ĐẦU</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="py-1"></div>
-            <div class="card">
-                <div class="card-header bg-danger card-outline">
-                    <h5 class="card-title m-0">ACC DIE</h5>
-                </div>
-                <div class="card-body">
-                    <label>ACC DIE:</label>
-                    <div class="form-group">
-                        <div class="border border-danger">
-                            <textarea style="background-color: #2a2a2a; white-space: pre; overflow-wrap: normal;" rows="7" class="form-control copy" onclick="this.select();toastr.success('Đã copy!');" id="ListDie" data-clipboard-target="#ListDie" readonly=""></textarea>
+            </section>
+            <section>
+                <div class="card bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+                    <div class="card-header bg-green-700 p-4 rounded-t-lg">
+                        <h5 class="text-white font-bold">ACC LIVE</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <label>ACC LIVE:</label>
+                        <div class="border border-green-500 rounded">
+                            <textarea rows="7" id="ListLive" class="w-full p-2 bg-gray-700 text-white rounded" onclick="this.select();toastr.success('Đã copy!');" readonly></textarea>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="py-2"></div>
+                <div class="card bg-gray-800 border border-gray-700 rounded-lg shadow-lg">
+                    <div class="card-header bg-red-700 p-4 rounded-t-lg">
+                        <h5 class="text-white font-bold">ACC DIE</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <label>ACC DIE:</label>
+                        <div class="border border-red-500 rounded">
+                            <textarea rows="7" id="ListDie" class="w-full p-2 bg-gray-700 text-white rounded" onclick="this.select();toastr.success('Đã copy!');" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-<div class="py-2"></div>
-<script>
-    new ClipboardJS('.copy');
-    var accounts;
-    var total;
-    var live;
-    var die;
+    <script>
+        new ClipboardJS('.copy');
+        var accounts;
+        var total;
+        var live;
+        var die;
 
-    // Danh sách token và biến theo dõi token hiện tại
-    var tokens = [
-        "6628568379|c1e620fa708a1d5696fb991c1bde5662",
-        "909532139405113|f2c0f29cca241fb64384b964ced05c88"
-    ];
-    var currentTokenIndex = 0;
+        var tokens = [
+            "6628568379|c1e620fa708a1d5696fb991c1bde5662",
+            "909532139405113|f2c0f29cca241fb64384b964ced05c88"
+        ];
+        var currentTokenIndex = 0;
 
-    // Lấy token hiện tại
-    function getCurrentToken() {
-        return tokens[currentTokenIndex];
-    }
+        function getCurrentToken() {
+            return tokens[currentTokenIndex];
+        }
 
-    // Chuyển sang token tiếp theo
-    function switchToken() {
-        currentTokenIndex = (currentTokenIndex + 1) % tokens.length;
-    }
+        function switchToken() {
+            currentTokenIndex = (currentTokenIndex + 1) % tokens.length;
+        }
 
-    $(function () {
-        $('#subitCheck').click(function (e) {
-            e.preventDefault();
-            var list = $('#ListAcc').val().trim();
-            if (!list) {
-                tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
+        $(function() {
+            $('#subitCheck').click(function(e) {
+                e.preventDefault();
+                var list = $('#ListAcc').val().trim();
+                if (!list) {
+                    tb('error', 'Thông Báo', 'Vui lòng nhập List UID để kiểm tra');
+                    return;
+                }
+                accounts = list.split("\n");
+                total = accounts.length;
+                $('#total').html(total);
+                live = 0;
+                $('#live').html(live);
+                die = 0;
+                $('#die').html(die);
+                Check_Live_UID(0);
+            });
+        });
+
+        function Check_Live_UID(a) {
+            var load = 0;
+            var limit = (total - a) > 100 ? 100 : total - a;
+            if (!limit) {
+                tb('success', 'Thông Báo', 'Đã check xong');
                 return;
             }
-            accounts = list.split("\n");
-            total = accounts.length;
-            $('#total').html(total);
-            live = 0;
-            $('#live').html(live);
-            die = 0;
-            $('#die').html(die);
-            Check_Live_UID(0);
-        });
-    });
+            for (let b = 0; b < limit; b++) {
+                (function(b, account) {
+                    try {
+                        if (!isNaN(account.split(/[|,/]/)[0]) == false) {
+                            var idfb = account.split(/[|,/]/)[1];
+                        } else {
+                            var idfb = account.split(/[|,/]/)[0];
+                        }
 
-    function Check_Live_UID(a) {
-        var load = 0;
-        var limit = (total - a) > 100 ? 100 : total - a;
-        if (!limit) {
-            tb('success', 'Thông Báo', 'Đã check xong');
-            return;
-        }
-        for (let b = 0; b < limit; b++) {
-            (function (b, account) {
-                try {
-                    if (!isNaN(account.split(/[|,/]/)[0]) == false) {
-                        var idfb = account.split(/[|,/]/)[1];
-                    } else {
-                        var idfb = account.split(/[|,/]/)[0];
-                    }
-					
-                    if (/\D/.test(idfb)) { // Kiểm tra nếu ID chứa ký tự chữ
+                        if (/\D/.test(idfb)) {
+                            $('#die').html(++die);
+                            $('#ListDie').append(account + "\n");
+                            ++load;
+                            return;
+                        }
+
+                        var locuid = document.querySelector("#isLoaiTrungLap1").checked;
+                        var checkavatar = document.querySelector("#CheckAvatar").checked;
+                        var xhr = new XMLHttpRequest();
+                        var url = "";
+                        var keywork = "";
+
+                        if (checkavatar == true) {
+                            url = `picture?type=normal&access_token=${getCurrentToken()}`;
+                            keywork = "t1.30497";
+                            limit = 1;
+                        } else {
+                            url = "picture?type=normal";
+                            keywork = "//static";
+                        }
+
+                        xhr.open('GET', ` https://graph.facebook.com/${idfb}/${url}`, true);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
+                                    $('#live').html(++live);
+                                    $('#ListLive').append(account + "\n");
+                                } else if (xhr.status === 400 || xhr.status === 401) {
+                                    switchToken();
+                                    Check_Live_UID(a);
+                                    return;
+                                } else {
+                                    $('#die').html(++die);
+                                    $('#ListDie').append(account + "\n");
+                                }
+                                ++load;
+                                if (load >= limit) {
+                                    Check_Live_UID(a + load);
+                                }
+                            }
+                        };
+                        xhr.send();
+                    } catch (error) {
                         $('#die').html(++die);
                         $('#ListDie').append(account + "\n");
                         ++load;
-						return;
-                    }
-					
-                    var locuid = document.querySelector("#isLoaiTrungLap1").checked;
-                    var checkavatar = document.querySelector("#CheckAvatar").checked;
-                    var xhr = new XMLHttpRequest();
-                    var url = "";
-                    var keywork = "";
-
-                    if (checkavatar == true) {
-                        url = `picture?type=normal&access_token=${getCurrentToken()}`;
-                        keywork = "t1.30497";
-                        limit = 1;
-                    } else {
-                        url = "picture?type=normal";
-                        keywork = "//static";
-                    }
-
-                    xhr.open('GET',` https://graph.facebook.com/${idfb}/${url}`, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4) {
-                            if (xhr.status == 200 && !xhr.responseURL.includes(keywork)) {
-                                $('#live').html(++live);
-                                $('#ListLive').append(account + "\n");
-                            } else if (xhr.status === 400 || xhr.status === 401) {
-                                // Nếu token bị lỗi, chuyển sang token khác
-                                switchToken();
-                                Check_Live_UID(a);
-                                return;
-                            } else {
-                                $('#die').html(++die);
-                                $('#ListDie').append(account + "\n");
-                            }
-                            ++load;
-                            if (load >= limit) {
-                                Check_Live_UID(a + load);
-                            }
+                        if (load >= limit) {
+                            Check_Live_UID(a + load);
                         }
-                    };
-                    xhr.send();
-                } catch (error) {
-                    $('#die').html(++die);
-                    $('#ListDie').append(account + "\n");
-                    ++load;
-                    if (load >= limit) {
-                        Check_Live_UID(a + load);
                     }
-                }
-            })(b, accounts[a + b]);
+                })(b, accounts[a + b]);
+            }
         }
-    }
 
-    function tb(status, title, msg) {
-        Command: toastr[status](msg, title)
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "onclick": null,
-            "showDuration": "400",
-            "hideDuration": "1000",
-            "timeOut": "4000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "slideDown",
-            "hideMethod": "slideUp"
+        function tb(status, title, msg) {
+            Command: toastr[status](msg, title)
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "4000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "slideDown",
+                "hideMethod": "slideUp"
+            }
         }
-    }
-</script>
+    </script>
+</body>
+
+</html>
