@@ -138,7 +138,6 @@ $(document).ready(function () {
         next.setSeconds(next.getSeconds() + 1)
         next.setMilliseconds(0)
         const nextTimer = time(next) - time()
-        console.log(nextTimer)
         setTimeout(renderOtpCodes, nextTimer)
     }
 
