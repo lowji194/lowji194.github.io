@@ -1,153 +1,156 @@
+<!DOCTYPE html>
 <html lang="vi">
-<meta charset="UTF-8" />
-<meta content="width=device-width,initial-scale=1" name="viewport" />
-<meta content="ie=edge" http-equiv="X-UA-Compatible" />
-<title>Tạo Tên Viêt Nam Ngẫu Nhiên</title>
-<link href="css/normalize.css" rel="stylesheet" />
-<link href="css/skeleton.css" rel="stylesheet" />
-<link href="css/custom.css" rel="stylesheet" />
-<div class="bar">
-    <aside>
-        <button class="btntab active" onclick='openTab(event,"name")'>Tạo tên</button>
-        <button class="btntab" onclick='openTab(event,"user")'>Tạo tên tài khoản</button>
-        <button id="GoToBottom" style="float: right; border: none; height: 100%;" onclick="scrollToBottom()">&#8623;</button>
-    </aside>
-</div>
-<div class="tabcontent" id="name" style="display: block;">
-    <div class="container">
-        <div class="content" id="content">
-            <h1>Tạo Tên Ngẫu Nhiên</h1>
-            <div id="generate-names">
-                <div class="row">
-                    <div class="columns six">
-                        <label> Dữ liệu chọn lọc:
-                            <input type="checkbox" id="name_cloc" checked="checked" onchange="onchangenamecloc()" />
-                            <br/>
-                            <label id="name_choice"> Chọn giới tính:
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Tất cả
-                                    <input type="radio" name="name_gtinh" value="all" checked="checked" />
-                                </label>
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Nam
-                                    <input type="radio" name="name_gtinh" value="Nam" />
-                                </label>
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Nữ
-                                    <input type="radio" name="name_gtinh" value="Nữ" />
-                                </label>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tạo Tên Việt Nam Ngẫu Nhiên</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="bg-blue-500 text-white p-4">
+        <aside class="flex justify-between">
+            <div>
+                <button class="bg-blue-700 text-white px-4 py-2 rounded mr-2" onclick='openTab(event,"name")'>Tạo tên</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick='openTab(event,"user")'>Tạo tên tài khoản</button>
+            </div>
+            <button id="GoToBottom" class="bg-transparent border-none text-white" onclick="scrollToBottom()">&#8623;</button>
+        </aside>
+    </div>
+
+    <div class="tabcontent p-4" id="name" style="display: block;">
+        <div class="container mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold mb-4">Tạo Tên Ngẫu Nhiên</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block mb-2">Dữ liệu chọn lọc:
+                            <input type="checkbox" id="name_cloc" checked="checked" onchange="onchangenamecloc()" class="ml-2"/>
+                        </label>
+                        <label id="name_choice" class="block mb-2">Chọn giới tính:
+                            <label class="inline-block ml-2">Tất cả
+                                <input type="radio" name="name_gtinh" value="all" checked="checked" class="ml-1"/>
+                            </label>
+                            <label class="inline-block ml-2">Nam
+                                <input type="radio" name="name_gtinh" value="Nam" class="ml-1"/>
+                            </label>
+                            <label class="inline-block ml-2">Nữ
+                                <input type="radio" name="name_gtinh" value="Nữ" class="ml-1"/>
                             </label>
                         </label>
-                        <label>Số lượng
-                            <input id="quantity" class="u-full-width" value="100" type="number" />
+                        <label class="block mb-2">Số lượng
+                            <input id="quantity" class="w-full p-2 border rounded" value="100" type="number" />
                         </label>
-                        <button class="u-full-width button-primary" onclick="loadNames()" style="font-family: math;">Tạo</button>
-                        <section class="tooltip">
-                            <button class="u-full-width" onclick="CopyName()" style="display: none;" id="btncopyname"><span class="tooltiptext" id="nameTooltip"></span>Sao chép</button>
+                        <button class="w-full bg-blue-500 text-white p-2 rounded mt-2" onclick="loadNames()">Tạo</button>
+                        <section class="tooltip mt-2">
+                            <button class="w-full bg-gray-500 text-white p-2 rounded" onclick="CopyName()" style="display: none;" id="btncopyname">
+                                <span class="tooltiptext" id="nameTooltip"></span>Sao chép
+                            </button>
                         </section>
                         <a href="" id="txt" style="display: none;">
-                            <button class="u-full-width">Tải Tệp .txt</button>
+                            <button class="w-full bg-green-500 text-white p-2 rounded mt-2">Tải Tệp .txt</button>
                         </a>
                         <a href="" id="csv" style="display: none;">
-                            <button class="u-full-width">Tải Tệp .csv</button>
+                            <button class="w-full bg-green-500 text-white p-2 rounded mt-2">Tải Tệp .csv</button>
                         </a>
-                        <section id="textcopy"></section>
+                        <section id="textcopy" class="mt-4"></section>
                     </div>
-                    <div class="columns six">
-                        <div id="result"></div>
-                    </div>
+                    <div id="result" class="bg-gray-50 p-4 rounded-lg"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="tabcontent" id="user">
-    <div class="container">
-        <div class="content" id="content">
-            <h1>Tạo Tên Tài Khoản Ngẫu Nhiên</h1>
-            <div id="generate-users">
-                <div class="row">
-                    <div class="columns six">
-                        <label id="ttlabel"> Tiền Tố
-                            <label style="display: inline; width: fit-content; margin-left: 10px;">| Tạo Ngẫu Nhiên
-                                <input type="checkbox" id="tt_random" checked="checked" onchange="onchangettrnd()" />
+
+    <div class="tabcontent p-4" id="user" style="display: none;">
+        <div class="container mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h1 class="text-2xl font-bold mb-4">Tạo Tên Tài Khoản Ngẫu Nhiên</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label id="ttlabel" class="block mb-2">Tiền Tố
+                            <label class="inline-block ml-2">| Tạo Ngẫu Nhiên
+                                <input type="checkbox" id="tt_random" checked="checked" onchange="onchangettrnd()" class="ml-1"/>
                             </label>
                             <br/>
-                            <input type="text" id="tt_input" class="u-full-width" disabled="disabled" style="display: none;" /> </label>
-                        <label>Số lượng
-                            <input id="quantity_user" class="u-full-width" value="100" type="number" />
+                            <input type="text" id="tt_input" class="w-full p-2 border rounded" disabled="disabled" style="display: none;" />
                         </label>
-                        <label id="lblen">Độ dài
-                            <input id="len" class="u-full-width" value="5" type="number" />
+                        <label class="block mb-2">Số lượng
+                            <input id="quantity_user" class="w-full p-2 border rounded" value="100" type="number" />
                         </label>
-                        <label id="lbformat_choice" for="format_choice" style="display: none;"> Lựa Chọn Định Dạng
-                            <select name="format_choice" id="format_choice" class="u-full-width">
+                        <label id="lblen" class="block mb-2">Độ dài
+                            <input id="len" class="w-full p-2 border rounded" value="5" type="number" />
+                        </label>
+                        <label id="lbformat_choice" for="format_choice" style="display: none;" class="block mb-2">Lựa Chọn Định Dạng
+                            <select name="format_choice" id="format_choice" class="w-full p-2 border rounded">
                                 <option value="dd/mm">dd/mm</option>
                                 <option value="dd/mm/yy">dd/mm/yy</option>
                                 <option value="dd/mm/yyyy">dd/mm/yyyy</option>
                             </select>
                         </label>
-                        <label style="display: none;" id="dotextlabel">Đuôi
-                            <input id="dotext" type="text" class="u-full-width" value="@gmail.com" />
+                        <label style="display: none;" id="dotextlabel" class="block mb-2">Đuôi
+                            <input id="dotext" type="text" class="w-full p-2 border rounded" value="@gmail.com" />
                         </label>
-                        <label>Tùy chọn mở rộng</label>
-                        <div id="RC_choice" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Cả Chữ Hoa
-                                <input type="radio" value="up" name="choice" />
+                        <label class="block mb-2">Tùy chọn mở rộng</label>
+                        <div id="RC_choice" class="flex flex-wrap justify-center gap-2">
+                            <label class="inline-block">Cả Chữ Hoa
+                                <input type="radio" value="up" name="choice" class="ml-1"/>
                             </label>
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Không Chữ Hoa
-                                <input type="radio" value="low" name="choice" checked="checked" />
+                            <label class="inline-block">Không Chữ Hoa
+                                <input type="radio" value="low" name="choice" checked="checked" class="ml-1"/>
                             </label>
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Chỉ Có Số
-                                <input type="radio" value="number" name="choice" />
+                            <label class="inline-block">Chỉ Có Số
+                                <input type="radio" value="number" name="choice" class="ml-1"/>
                             </label>
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Sinh Nhật
-                                <input type="radio" value="birthday" name="choice" />
+                            <label class="inline-block">Sinh Nhật
+                                <input type="radio" value="birthday" name="choice" class="ml-1"/>
                             </label>
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Thêm Đuôi
-                                <input id="ext" type="checkbox" />
+                            <label class="inline-block">Thêm Đuôi
+                                <input id="ext" type="checkbox" class="ml-1"/>
                             </label>
-                            <label style="display: inline; width: fit-content; margin-right: 10px;">Thêm Tiền Tố
-                                <input id="tt" type="checkbox" checked="checked" />
+                            <label class="inline-block">Thêm Tiền Tố
+                                <input id="tt" type="checkbox" checked="checked" class="ml-1"/>
                             </label>
                         </div>
-                        <label id="moredata"> Dữ liệu tiền tố chọn lọc:
-                            <input type="checkbox" id="user_cloc" checked="checked" onchange="onchangeusercloc()" />
-                            <br/>
-                            <label id="user_choice"> Chọn giới tính:
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Tất cả
-                                    <input type="radio" name="user_gtinh" value="all" checked="checked" />
-                                </label>
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Nam
-                                    <input type="radio" name="user_gtinh" value="Nam" />
-                                </label>
-                                <label style="display: inline; width: fit-content; margin-left: 10px;">Nữ
-                                    <input type="radio" name="user_gtinh" value="Nữ" />
-                                </label>
+                        <label id="moredata" class="block mb-2">Dữ liệu tiền tố chọn lọc:
+                            <input type="checkbox" id="user_cloc" checked="checked" onchange="onchangeusercloc()" class="ml-2"/>
+                        </label>
+                        <label id="user_choice" class="block mb-2">Chọn giới tính:
+                            <label class="inline-block ml-2">Tất cả
+                                <input type="radio" name="user_gtinh" value="all" checked="checked" class="ml-1"/>
+                            </label>
+                            <label class="inline-block ml-2">Nam
+                                <input type="radio" name="user_gtinh" value="Nam" class="ml-1"/>
+                            </label>
+                            <label class="inline-block ml-2">Nữ
+                                <input type="radio" name="user_gtinh" value="Nữ" class="ml-1"/>
                             </label>
                         </label>
-                        <button class="u-full-width" onclick="suggestions()" id="btn_suggestion" disabled="disabled" style="display: none;">Gợi ý tiền tố</button>
-                        <button class="u-full-width button-primary" onclick="loadUsers()" style="font-family: math;">Tạo</button>
-                        <section class="tooltip">
-                            <button class="u-full-width" onclick="CopyUser()" style="display: none;" id="btncopyuser"><span class="tooltiptext" id="userTooltip"></span>Sao chép</button>
+                        <button class="w-full bg-blue-500 text-white p-2 rounded mt-2" onclick="suggestions()" id="btn_suggestion" disabled="disabled" style="display: none;">Gợi ý tiền tố</button>
+                        <button class="w-full bg-blue-500 text-white p-2 rounded mt-2" onclick="loadUsers()">Tạo</button>
+                        <section class="tooltip mt-2">
+                            <button class="w-full bg-gray-500 text-white p-2 rounded" onclick="CopyUser()" style="display: none;" id="btncopyuser">
+                                <span class="tooltiptext" id="userTooltip"></span>Sao chép
+                            </button>
                         </section>
                         <a href="" id="txt_user" style="display: none;">
-                            <button class="u-full-width">Tải Tệp .txt</button>
+                            <button class="w-full bg-green-500 text-white p-2 rounded mt-2">Tải Tệp .txt</button>
                         </a>
                         <a href="" id="csv_user" style="display: none;">
-                            <button class="u-full-width">Tải Tệp .csv</button>
+                            <button class="w-full bg-green-500 text-white p-2 rounded mt-2">Tải Tệp .csv</button>
                         </a>
-                        <section id="textusercopy"></section>
+                        <section id="textusercopy" class="mt-4"></section>
                     </div>
-                    <div class="columns six">
-                        <div id="result_user"></div>
-                    </div>
+                    <div id="result_user" class="bg-gray-50 p-4 rounded-lg"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<button onclick="topFunction()" id="GoToTop">⇑</button>
-<script src="js/data.js"></script>
-<script src="js/tenchonloc/nam.js"></script>
-<script src="js/tenchonloc/nu.js"></script>
-<script src="js/app.js"></script>
 
+    <button onclick="topFunction()" id="GoToTop" class="fixed bottom-4 right-4 bg-blue-500 text-white p-3 rounded-full shadow-lg">⇑</button>
+
+    <script src="js/data.js"></script>
+    <script src="js/tenchonloc/nam.js"></script>
+    <script src="js/tenchonloc/nu.js"></script>
+    <script src="js/app.js"></script>
+</body>
 </html>
